@@ -6,7 +6,7 @@ MediCare Hub este o aplicație web care permite utilizatorilor să gestioneze pr
 
 ## Adresa Repository-ului
 
-Adresa repository-ului este [[https://gitlab.upt.ro/username/nume-repositorio](https://github.com/Alexi1510/SiteLicenta2)].
+Adresa repository-ului este [(https://github.com/Alexi1510/SiteLicenta2)].
 
 ## Cod Sursă
 
@@ -18,13 +18,9 @@ Codul sursă complet al proiectului este disponibil în acest repository. Fișie
    - Asigurați-vă că aveți Node.js și npm instalate.
    - Rulați `npm install` pentru a instala toate dependențele.
 
-2. **Compilarea Aplicației**:
-   - Rulați `npm run dev` pentru a compila aplicația.
-   - Copiați link-ul din terminal pentru a accesa aplicația.
-
-
-3. **Lansare**:
-   - Rulați `npm start` pentru a lansa aplicația local.
+2. **Lansare**:
+   - Rulați `npm run dev` pentru a lansa aplicația local.
+   - Copiați link-ul pentru a accesa aplicația
 
 ## Contact
 
