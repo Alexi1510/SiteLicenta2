@@ -1,0 +1,54 @@
+.results{
+    padding-top: 10rem;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+}
+
+.results h1{
+    font-size: 10rem;
+    color: var(--black);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#patientName{
+    width: 50%;
+    padding: 1rem;
+    margin: 20px 0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+    height: 50px;
+    align-items: center;
+}
+
+#searchForm{
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+#searchForm .btn{
+    padding: 0 2rem;
+    background-color: var(--green);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: auto;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    align-items: center;
+    height: 50px;
+}
+
+#searchForm .btn:hover{
+    background-color: white;
+    color: var(--green);
+}

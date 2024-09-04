@@ -1,0 +1,5 @@
+{
+  "tableName": "userLicentaLocal",
+  "partitionKeyName": "userId",
+  "partitionKeyType": "S"
+}

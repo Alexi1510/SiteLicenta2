@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MediCare Hub</title>
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="css/homestyle.css">
+</head>
+<body>
+    <!-- Header-ul incepe aici -->
+
+    <header class="header">
+
+        <a href="#" class="logo"><i class="fas fa-heartbeat"></i>MediCare</a>
+
+
+        <header class="header">
+            <a href="/index.html" class="logo"><i class="fas fa-heartbeat"></i>MediCare</a>
+            <nav class="navbar">
+                <a href="/index.html">Home</a>
+    
+                <a href="/html/results.html">Results</a>
+                <a href="/html/store.html">Store</a>
+                <a href="/html/about.html">About</a>
+                <a href="/html/book.html">Book</a>
+                <a href="/html/login.html">Login</a>
+                <a href="#" id="signout-link" style="display: none;">Sign Out</a> <!-- Sign-Out Link -->
+            </nav>
+            <div id="menu-btn" class="fas fa-bars"></div>
+        </header>
+
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+    </header>
+
+    <!-- Header-ul se termina aici -->
+
+    <!-- Sectiunea de home incepe aici -->
+
+        <section class="home" id="home">
+            <div class="image">
+                <img src="imagini licenta/7317079.jpg" alt="">
+            </div>
+
+            <div class="content">
+                <h3>Stay safe, Stay healthy!</h3>
+                <p>Stay safe, Stay healthy! Welcome to MediCare, where your health and safety are our top priorities. We are dedicated to providing you with the best services to help you live a healthy and happy life. Explore our personalized solutions and join the MediCare community for support and inspiration. Together, we can build a healthier future!</p>
+                <a href="#" class="btn">Contact us<span class="fas fa-chevron-right"></span></a>
+            </div>
+        </section>
+        
+
+    <!-- Sectiunea de home se termina aici -->
+
+    <!-- Sectiune de icons -->
+
+        <section class="icons-container">
+
+            <div class="icons">
+                <i class="fas fa-user-md"></i>
+                <h3>15+</h3>
+                <p>Doctors at work</p>
+            </div>
+
+            <div class="icons">
+                <i class="fas fa-users"></i>
+                <h3>150+</h3>
+                <p>Satisfied patients</p>
+            </div>
+
+            <div class="icons">
+                <i class="fas fa-hospital"></i>
+                <h3>2</h3>
+                <p>Locations available</p>
+            </div>
+
+            <div class="icons">
+                <i class="fas fa-syringe"></i>
+                <h3>20+</h3>
+                <p>Medical Tests</p>
+            </div>
+
+        </section>
+
+    <!-- Sectiune de icons terminata -->
+
+    <!-- Sectiune servicii inceput -->
+
+        <section class="services" id="services">
+
+            <h1 class="heading">our <span>services</span></h1>
+
+            <div class="box-container">
+
+                <div class="box">
+                    <i class="fas fa-notes-medical"></i>
+                    <h3>Free checkups</h3>
+                    <p>At MediCare, your health and safety are our priorities. Enjoy free checkups from our dedicated team to stay on top of your health. Stay proactive about your health with MediCare!</p>
+                    <a href="#" class="btn">Learn more<span class="fas fa-chevron-right"></span></a>
+                </div>
+
+                <div class="box">
+                    <i class="fas fa-syringe"></i>
+                    <h3>All test types</h3>
+                    <p>At MediCare, we offer a comprehensive range of medical tests to ensure your well-being. Our services include blood tests, cholesterol checks, glucose tests, and more. Trust MediCare for accurate results and professional care. Stay informed about your health with MediCare!</p>
+                    <a href="#" class="btn">See more <span class="fas fa-chevron-right"></span></a>
+                </div>
+
+                <div class="box">
+                    <i class="fas fa-pills"></i>
+                    <h3>Medicines</h3>
+                    <p>At MediCare, we offer a wide range of medicines to meet your health needs. Our selection is carefully curated to ensure quality and efficacy. Trust MediCare for reliable medications and expert advice. Stay healthy with MediCare!</p>
+                    <a href="#" class="btn">See all <span class="fas fa-chevron-right"></span></a>
+                </div>
+
+               
+
+            </div>
+
+        </section>
+
+    <!-- Sectiune servicii sfarsit -->
+
+    <!-- Sectiune booking -->
+
+        <section class="book" id="book">
+
+            <h1 class="heading"><span>Book</span> now</h1>
+
+            <div class="row">
+
+                <div class="image">
+                    <a href="book.html"><img src="../imagini licenta/cardiologist_17.jpg" alt=""></a>
+                </div>
+
+                
+            </div>
+
+        </section>
+
+    <!-- Sectiune booking -->
+    <div id="logout-success-message" style="display: none; color: green; font-size: 20px; text-align: center; margin-top: 20px;">
+        You have successfully logged out!
+    </div>
+    <div id="logout-success-message" style="display: none; color: green; font-size: 20px; text-align: center; margin-top: 20px;">
+        You have successfully logged out!
+    </div>
+
+    
+    <!-- <script src="js/HomeScript.js"></script> -->
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/js/utils_signup.js"></script>
+
+    <script type="module">
+        import { signOutHandler } from '/js/utils_signup.js'; // Adjust the path if necessary
+        import { getUserAuth } from '/js/utils_signup.js'; // Adjust the path if necessary
+    
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const result = await getUserAuth();
+                const logoutLink = document.getElementById('signout-link'); // Get the sign-out link
+                const successMessageElement = document.getElementById('logout-success-message'); // Get the logout success message element
+    
+                if (result) {
+                    // Show the sign-out link if the user is authenticated
+                    logoutLink.style.display = 'block';
+    
+                    // Handle the sign-out event
+                    logoutLink.addEventListener('click', async function(event) {
+                        event.preventDefault();
+                        try {
+                            await signOutHandler();
+                            console.log('Sign out successful');
+    
+                            if (successMessageElement) {
+                                successMessageElement.style.display = 'block'; // Show the success message
+    
+                                // Ensure the message stays visible for 3 seconds before redirecting
+                                setTimeout(() => {
+                                    window.location.href = '/index.html'; // Redirect after sign out
+                                }, 3000); // 3-second delay before redirecting
+                            }
+                        } catch (error) {
+                            console.error('Error signing out:', error);
+                        }
+                    });
+                } else {
+                    console.log('No authenticated user found.');
+                }
+            } catch (error) {
+                console.error('Error during DOMContentLoaded handling:', error);
+            }
+        });
+    </script>
+   
+</body>
+</html>

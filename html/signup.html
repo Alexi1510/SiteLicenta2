@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>MediCare Hub</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/homestyle.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <style>
+        /* Basic styling for the confirmation modal */
+        #confirmation-modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        #confirmation-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+          /* Success message styling */
+          #success-message {
+            display: none;
+            color: green;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" class="logo"><i class="fas fa-heartbeat"></i>MediCare</a>
+        <nav class="navbar">
+            <a href="home.html">Home</a>
+            <a href="results.html">Results</a>
+            <a href="store.html">Store</a>
+            <a href="about.html">About</a>
+            <a href="book.html">Book</a>
+            <a href="login.html">Login</a>
+        </nav>
+        <div id="menu-btn" class="fas fa-bars"></div>
+    </header>
+
+    <section class="login" id="login">
+        <div class="row">
+            <form id="signup-form">
+                <h3>Sign Up</h3>
+                <input type="text" id="first_name" placeholder="First Name" class="box" required>
+                <input type="text" id="last_name" placeholder="Last Name" class="box" required>
+                <input type="email" id="email" placeholder="Email" class="box" required>
+                <input type="password" id="password" placeholder="Password" class="box" required>
+                <div class="button-container">
+                    <button id="buttonSignup" type="submit" class="btn signup">Sign Up</button>
+                </div>
+                <div class="link-container">
+                    <a href="login.html">Already have an account? Login.</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    
+
+    <script src="../js/HomeScript.js"></script>
+    <script  src="../js/signup.js" type="module" ></script>
+ 
+
+
+
+    <!-- <script type="module">
+        import { handleSignUp } from '../js/signup.js'; // Adjust the path if necessary
+
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const first_name = document.getElementById('first_name').value;
+            const last_name = document.getElementById('last_name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            console.log(document.getElementById('first_name')); // Check what this returns
+            console.log(document.getElementById('email').value); // Check the value
+
+            console.log(first_name); // Verify what this returns
+            console.log(email);     // Verify the email value
+
+            handleSignUp({ username: email, password: password, email: email });
+
+        });
+    </script> -->
+      <!-- Modal for Confirmation Code -->
+      <div id="confirmation-modal">
+        <div id="confirmation-modal-content">
+            <span>Enter the confirmation code sent to your email:</span>
+            <input type="text" id="confirmation-code" placeholder="Confirmation Code">
+            <button id="confirm-code-btn">Confirm</button>
+        </div>
+    </div>
+    <div id="success-message">
+        Sign Up successful! Redirecting...
+    </div>
+
+    <script type="module">
+        import { handleSignUp } from '../js/utils_signup.js'; // Adjust the path if necessary
+        import { handleConfirmSignUp } from '../js/utils_signup.js'; // Import confirm sign up
+        import {postUserData} from '../js/lambda_utils.js'
+
+        document.getElementById('signup-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const first_name = document.getElementById('first_name').value;
+            const last_name = document.getElementById('last_name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            console.log(first_name); // Verify what this returns
+            console.log(email);     // Verify the email value
+
+            // Handle sign up
+            await handleSignUp({ username: email, password: password, email: email });
+
+            // Display the confirmation code modal
+            document.getElementById('confirmation-modal').style.display = 'block';
+
+            document.getElementById('confirm-code-btn').addEventListener('click', async function() {
+            const confirmationCode = document.getElementById('confirmation-code').value;
+            const email = document.getElementById('email').value; // Assuming 'email' is obtained elsewhere in your code
+
+            try {
+                const confirmResult = await handleConfirmSignUp({
+                    username: email,
+                    confirmationCode
+                });
+
+                // Check if signup confirmation was complete
+                if (confirmResult && confirmResult.isSignUpComplete) {
+                    // Attempt to post user data
+                    const postResult = await postUserData({ email: email });
+                    console.log('Post Result:', postResult);
+
+                    // Check response from posting user data
+                    if (postResult && postResult.ok) { // Assuming 'postResult' has a 'success' property
+                        // Hide the confirmation modal and display the success message
+                        document.getElementById('confirmation-modal').style.display = 'none';
+                        document.getElementById('success-message').style.display = 'block';
+
+                        // Redirect after a delay
+                        setTimeout(() => {
+                            window.location.href = 'index.html'; // Redirect to the login page or another page
+                        }, 3000);
+                    } else {
+                        throw new Error('Post registration data failed.');
+                    }
+                } else {
+                    throw new Error('Confirmation failed.');
+                }
+            } catch (error) {
+                console.error('Error during confirmation:', error);
+                alert('There was an issue during confirmation. Please try again.');
+            }
+        });
+
+
+            // Handle confirmation code submission
+            // document.getElementById('confirm-code-btn').addEventListener('click', async function() {
+            //     const confirmationCode = document.getElementById('confirmation-code').value;
+
+            //     try {
+            //         const result = await handleConfirmSignUp({
+            //             username: email,
+            //             confirmationCode
+            //         });
+
+            //         // Ensure result is valid before destructuring
+            //         if (result && result.isSignUpComplete) {
+            //             const { isSignUpComplete, userId, nextStep } = result;
+
+            //             if (isSignUpComplete) {
+            //                 // Hide the confirmation modal
+                            
+            //                 // Display the success message
+                         
+
+                            
+            //                 const result = await postUserData({ email: email });  
+            //                 console.log(result)
+            //                 // Optionally, redirect the user after a short delay
+            //                 if (result){
+
+            //                     document.getElementById('confirmation-modal').style.display = 'none';
+            //                     document.getElementById('success-message').style.display = 'block';
+            //                     setTimeout(() => {
+            //                         window.location.href = 'index.html'; // Redirect to the login page or another page
+            //                     }, 3000); // 3-second delay before redirecting
+            //                     }
+                          
+            //             } else {
+            //                 alert('There was an issue with your confirmation. Please try again.');
+            //             }
+            //         } else {
+            //             throw new Error('Confirmation failed.');
+            //         }
+            //     } catch (error) {
+            //         console.error('Error during confirmation:', error);
+            //         alert('There was an issue during confirmation. Please try again.');
+            //     }
+            // });
+        });
+    </script>
+</body>
+</html>

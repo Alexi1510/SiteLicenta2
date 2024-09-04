@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cart - MediCare Hub</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/homestyle.css">
+    <link rel="stylesheet" href="../css/cart.css"> 
+    <link rel="stylesheet" href="../css/services.css"> 
+
+</head>
+<body>
+
+<!-- Header-ul incepe aici -->
+<header class="header">
+    <a href="#" class="logo"><i class="fas fa-heartbeat"></i>MediCare</a>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="results.html">Results</a>  
+        <a href="store.html">Store</a>       
+        <a href="about.html">About</a>
+        <a href="book.html">Book</a>
+        <a href="login.html">Login</a>
+    </nav>
+    <div id="menu-btn" class="fas fa-bars"></div>
+</header>
+<!-- Header-ul se termina aici -->
+
+<section class="cart" id="cart">
+    <h1 class="heading"><span>Your</span> Cart</h1>
+    <div class="cart-container">
+        <!-- Aici vor fi afișate produsele -->
+    </div>
+    <div class="cart-total">
+        <h3>Total: $<span id="total-price">0.00</span></h3>
+        <button class="btn checkout-btn">Checkout</button>
+    </div>
+</section>
+
+<!-- Popup pentru checkout -->
+<div class="popup" id="checkout-popup">
+    <div class="popup-content">
+        <h2>Complete Your Payment</h2>
+        <form id="payment-form">
+            <input type="text" id="card-number" placeholder="Card Number" required>
+            <input type="text" id="card-expiry" placeholder="MM/YY" required>
+            <input type="text" id="card-cvv" placeholder="CVV" required>
+            <button type="submit">Pay Now</button>
+            <button type="button" class="close" id="close-popup">Close</button>
+        </form>
+    </div>
+</div>
+
+<script>
+// Funcție pentru afișarea produselor din coș
+function displayCartItems() {
+    const cartContainer = document.querySelector('.cart-container');
+    const totalPriceElement = document.getElementById('total-price');
+    
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+        totalPriceElement.textContent = '0.00';
+        return;
+    }
+
+    let totalPrice = 0;
+    
+    cart.forEach(item => {
+        const itemTotalPrice = item.price * item.quantity;
+        totalPrice += itemTotalPrice;
+
+        const cartItemElement = document.createElement('div');
+        cartItemElement.classList.add('cart-item');
+
+        cartItemElement.innerHTML = `
+            <img src="../imagini licenta/${item.image}" alt="${item.name}">
+            <div class="item-details">
+                <h3>${item.name}</h3>
+                <p>Price: $${item.price.toFixed(2)}</p>
+                <p>Quantity: ${item.quantity}</p>
+                <p>Total: $${itemTotalPrice.toFixed(2)}</p>
+                <button class="btn remove-item" data-name="${item.name}">Remove</button>
+            </div>
+        `;
+
+        cartContainer.appendChild(cartItemElement);
+    });
+
+    totalPriceElement.textContent = totalPrice.toFixed(2);
+}
+
+// Funcție pentru eliminarea produselor din coș
+function setupRemoveButtons() {
+    const removeButtons = document.querySelectorAll('.remove-item');
+
+    removeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const name = button.getAttribute('data-name');
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cart = cart.filter(item => item.name !== name);
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            document.querySelector('.cart-container').innerHTML = '';
+            displayCartItems();
+            setupRemoveButtons();
+        });
+    });
+}
+
+// Funcție pentru a deschide popup-ul de checkout
+function openCheckoutPopup() {
+    document.getElementById('checkout-popup').style.display = 'flex';
+}
+
+// Funcție pentru a închide popup-ul de checkout
+function closeCheckoutPopup() {
+    document.getElementById('checkout-popup').style.display = 'none';
+}
+
+// Funcție pentru a gestiona procesul de checkout
+async function handleCheckout(event) {
+    event.preventDefault();
+
+    const cardNumber = document.getElementById('card-number').value;
+    const cardExpiry = document.getElementById('card-expiry').value;
+    const cardCvv = document.getElementById('card-cvv').value;
+
+    // Validarea informațiilor cardului (adăugați validare suplimentară după necesități)
+    if (!cardNumber || !cardExpiry || !cardCvv) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    // Simulare proces de plată
+    console.log(`Processing payment with card number: ${cardNumber}, expiry: ${cardExpiry}, CVV: ${cardCvv}`);
+
+    // Golește coșul și reîmprospătează pagina
+    localStorage.removeItem('cart');
+    document.querySelector('.cart-container').innerHTML = '';
+    document.getElementById('total-price').textContent = '0.00';
+
+    // Închide popup-ul și afișează mesajul de succes
+    closeCheckoutPopup();
+    alert('Payment was successful!');
+}
+
+// Afișăm produsele din coș și configurăm butoanele de eliminare
+document.addEventListener('DOMContentLoaded', () => {
+    displayCartItems();
+    setupRemoveButtons();
+
+    // Configurăm butonul de checkout
+    document.querySelector('.checkout-btn').addEventListener('click', openCheckoutPopup);
+
+    // Configurăm butonul de închidere al popup-ului
+    document.getElementById('close-popup').addEventListener('click', closeCheckoutPopup);
+
+    // Configurăm formularul de plată
+    document.getElementById('payment-form').addEventListener('submit', handleCheckout);
+});
+</script>
+<script src="../js/HomeScript.js"></script>
+
+</body>
+</html>

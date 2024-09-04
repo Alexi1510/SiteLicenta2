@@ -1,0 +1,24 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sitelicenta2-dev-4c7d2-authRole",
+      "UnauthRoleArn": "arn:aws:iam::334455826866:role/amplify-sitelicenta2-dev-4c7d2-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::334455826866:role/amplify-sitelicenta2-dev-4c7d2-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-sitelicenta2-dev-4c7d2-deployment",
+      "UnauthRoleName": "amplify-sitelicenta2-dev-4c7d2-unauthRole",
+      "StackName": "amplify-sitelicenta2-dev-4c7d2",
+      "StackId": "arn:aws:cloudformation:eu-north-1:334455826866:stack/amplify-sitelicenta2-dev-4c7d2/b6feaa20-6565-11ef-b491-0a8c363270ad",
+      "AmplifyAppId": "d29bcc1hdx15hj"
+    },
+    "categories": {
+      "auth": {
+        "sitelicenta2f9bc929c": {}
+      },
+      "function": {
+        "siteLicentaLambda2": {},
+        "siteLicentaLambdaLocal": {}
+      }
+    }
+  }
+}

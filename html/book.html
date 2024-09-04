@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MediCare Hub</title>
+
+    <!-- Link font utilizat -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+   
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    
+
+    <!-- Link style sheet -->
+    <link rel="stylesheet" href="../css/homestyle.css">
+    <link rel="stylesheet" href="../css/book.css">
+
+</head>
+
+<body>
+
+    <!-- Header-ul incepe aici -->
+
+    <header class="header">
+
+        <a href="#" class="logo"><i class="fas fa-heartbeat"></i>MediCare</a>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="results.html">Results</a>  
+            <a href="store.html">Store</a>       
+            <a href="about.html">About</a>
+            <a href="cart.html">Cart</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+    </header>
+
+    <!-- Header-ul se termina aici -->
+
+    <!-- Sectiune booking -->
+        <!-- Sectiune booking -->
+    <section class="book" id="book">
+ 
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar/daygrid/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar/timegrid/main.min.js"></script>
+        <script src="../js/appointment_utils.js" type="module"></script> 
+
+
+        <div class="row">
+            <form>
+                <h3>Book Your Appointment</h3>
+                <input type="text" placeholder="First Name" class="box" name="first_name" required>
+                <input type="text" placeholder="Last Name" class="box" name="last_name" required>
+                <input type="tel" placeholder="Phone Number" class="box" name="phone_number" required>
+                <input type="email" placeholder="Email" class="box" name="email" required>
+                <input type="time" id="start_time" name="start_time" value="09:00">
+                <input type="time" id="end_time" name="end_time" value="10:00">
+
+                <input type="date" id="appointment-date" class="box" name="appointment_date" required>
+                <!-- <input type="date" id="appointment-date" class="box" required> -->
+
+
+                <select class="box" name="service" required>
+                    <option value="" disabled selected>Select Service</option>
+                    <option value="checkup">Free Checkup</option>
+                    <option value="consultation">Consultation</option>
+                    <option value="test">Diagnostic Test</option>
+                </select>
+                <select id="doctor-select" class="box" name="doctor" required>
+                    <option value="" disabled selected>Select Doctor</option>
+                </select>
+                <input type="submit" value="Book Now" class="btn">
+            </form>
+        </div>
+        <!-- Container for the FullCalendar -->
+        <div id="calendar"></div> <!-- Ensure this div is placed where you want the calendar to appear -->
+    </section>
+    <!-- Sectiune booking -->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let menu = document.querySelector('#menu-btn');
+            let navbar = document.querySelector('.navbar');
+
+        menu.onclick = () => {
+            menu.classList.toggle('fa-times');
+            navbar.classList.toggle('active');
+            };
+
+        window.onscroll = () => {
+            menu.classList.remove('fa-times');
+            navbar.classList.remove('active');
+            };
+        });
+
+    </script>
+
+   
+ 
+
+</body>
+</html>

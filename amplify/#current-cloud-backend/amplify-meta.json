@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sitelicenta2-dev-4c7d2-authRole",
+      "UnauthRoleArn": "arn:aws:iam::334455826866:role/amplify-sitelicenta2-dev-4c7d2-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::334455826866:role/amplify-sitelicenta2-dev-4c7d2-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-sitelicenta2-dev-4c7d2-deployment",
+      "UnauthRoleName": "amplify-sitelicenta2-dev-4c7d2-unauthRole",
+      "StackName": "amplify-sitelicenta2-dev-4c7d2",
+      "StackId": "arn:aws:cloudformation:eu-north-1:334455826866:stack/amplify-sitelicenta2-dev-4c7d2/b6feaa20-6565-11ef-b491-0a8c363270ad",
+      "AmplifyAppId": "d29bcc1hdx15hj"
+    }
+  },
+  "auth": {
+    "sitelicenta2f9bc929c": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-sitelicenta2-dev-4c7d2-deployment/amplify-cfn-templates/auth/sitelicenta2f9bc929c-cloudformation-template.json",
+        "logicalId": "authsitelicenta2f9bc929c"
+      },
+      "lastPushTimeStamp": "2024-08-28T17:52:32.612Z",
+      "output": {
+        "UserPoolId": "eu-north-1_dUZyXlXvS",
+        "AppClientIDWeb": "45s8ejltunhfm9q7das7famvgm",
+        "AppClientID": "iktag4hv6l9907j1nrtd4gs2m",
+        "IdentityPoolId": "eu-north-1:ba201a4a-b2de-4367-88d8-fc577d25bcff",
+        "UserPoolArn": "arn:aws:cognito-idp:eu-north-1:334455826866:userpool/eu-north-1_dUZyXlXvS",
+        "IdentityPoolName": "sitelicenta2f9bc929c_identitypool_f9bc929c__dev",
+        "UserPoolName": "sitelicenta2f9bc929c_userpool_f9bc929c"
+      },
+      "lastPushDirHash": "w7tGMNeIeEsqyFI28QbYiX+YGuY="
+    }
+  }
+}

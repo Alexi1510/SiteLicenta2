@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MediCare Hub</title>
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="../css/homestyle.css">
+    <link rel="stylesheet" href="../css/services.css">
+</head>
+<body>
+<!-- Header-ul incepe aici -->
+
+<header class="header">
+
+    <a href="#" class="logo"><i class="fas fa-heartbeat"></i>MediCare</a>
+
+    <nav class="navbar">
+        <a href="home.html">Home</a>
+        <a href="results.html">Results</a>  
+        <a href="store.html">Store</a>       
+        <a href="about.html">About</a>
+        <a href="book.html">Book</a>
+        <a href="cart.html">Cart</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+</header>
+
+<!-- Header-ul se termina aici -->
+
+<section class="store" id="store">
+    <h1 class="heading"><span>Medicine</span> Store</h1>
+    <input type="text" id="searchBar" placeholder="Search for medicines..." onkeyup="searchProducts()">
+    <div class="product-container">
+        <div class="product-box">
+            <img src="../imagini licenta/paracetamol.jpg" alt="Medicine 1">
+            <h3>Paracetamol</h3>
+            <p>Analgezic și antipiretic utilizat pentru ameliorarea durerilor moderate și reducerea febrei.</p>
+            <button class="btn add-to-cart" data-name="Paracetamol" data-price="5.99" data-image="paracetamol.jpg">Add to Cart</button>
+        </div>
+        <div class="product-box">
+            <img src="../imagini licenta/ibuprofen.jpg" alt="Medicine 2">
+            <h3>Ibuprofen</h3>
+            <p>Anti-inflamator nesteroidian utilizat pentru ameliorarea durerilor, inflamațiilor și febrei.</p>
+            <span class="price">$8.00</span>
+            <button class="btn add-to-cart" data-name="Ibuprofen" data-price="8.00" data-image="ibuprofen.jpg">Add to Cart</button>
+        </div>
+        <div class="product-box">
+            <img src="../imagini licenta/amoxicilina.jpg" alt="Medicine 3">
+            <h3>Amoxicilina</h3>
+            <p>Antibiotic utilizat pentru tratarea infecțiilor bacteriene.</p>
+            <span class="price">$12.00</span>
+            <button class="btn add-to-cart" data-name="Amoxicilina" data-price="12.00" data-image="amoxicilina.jpg">Add to Cart</button>
+        </div>
+        <div class="product-box">
+            <img src="../imagini licenta/cetizirina.jpg" alt="Medicine 4">
+            <h3>Cetirizina</h3>
+            <p>Antihistaminic utilizat pentru ameliorarea simptomelor alergice.</p>
+            <span class="price">$7.00</span>
+            <button class="btn add-to-cart" data-name="Cetirizina" data-price="7.00" data-image="cetirizina.jpg">Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<script src="../js/HomeScript.js"></script>
+<script>
+
+function searchProducts() {
+    var input = document.getElementById('searchBar').value.toLowerCase();
+    var products = document.getElementsByClassName('product-box');
+
+    for (var i = 0; i < products.length; i++) {
+        var product = products[i];
+        var productName = product.getElementsByTagName('h3')[0].innerText.toLowerCase();
+
+        if (productName.indexOf(input) > -1) {
+            product.style.display = '';
+        } else {
+            product.style.display = 'none';
+        }
+    }
+}
+
+// initializare cos cumparaturi din localStorage
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// selectare butoane "Add to Cart"
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const name = button.getAttribute('data-name');
+        const price = parseFloat(button.getAttribute('data-price'));
+        const image = button.getAttribute('data-image');
+
+        
+        const existingItem = cart.find(item => item.name === name);
+
+        if (existingItem) {
+            
+            existingItem.quantity += 1;
+        } else {
+            
+            cart.push({ name, price, image, quantity: 1 });
+        }
+
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        
+        alert('Product added to cart!');
+    });
+});
+</script>
+
+</body>
+</html>

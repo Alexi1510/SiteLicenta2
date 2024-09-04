@@ -1,0 +1,116 @@
+.login {
+    margin-top: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login .row {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.login .row form {
+    flex: 1 1 100%;
+    background: #fff;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    padding: 2rem;
+    border-radius: .5rem;
+}
+
+.login .row form h3 {
+    color: var(--black);
+    padding-bottom: 1rem;
+    font-size: 3rem;
+}
+
+.login .row form .box {
+    width: 60%;
+    margin: .7rem 0;
+    border-radius: .5rem;
+    border: var(--border);
+    font-size: 1.6rem;
+    color: var(--black);
+    text-transform: none;
+    padding: 1rem;
+}
+
+.login .row form .btn {
+    padding: 1rem 4rem;
+}
+
+/* Adăugăm o margine între butoane */
+.button-container input[type="submit"] {
+    margin-right: 1rem; /* Poți ajusta valoarea pentru a mări sau micșora spațiul între butoane */
+}
+
+/* Stil pentru butonul de Sign Up */
+.login .row form .btn.signup {
+    padding: 1rem 4rem;
+    background-color: #16a085; /* Setează culoarea verde pentru butonul de Sign Up */
+    color: white; /* Culoarea textului butonului de Sign Up */
+    border: var(--border);
+    cursor: pointer;
+}
+
+/* La hover, culoarea butonului de Sign Up devine albă */
+.login .row form .btn.signup:hover {
+    background-color: white;
+    color: #16a085; /* Schimbă culoarea textului butonului la hover */
+}
+
+.link-container{
+    margin-top: 10px;
+    font-size: 10px;
+}
+
+
+
+
+
+/* Media query-uri pentru responsivitate */
+@media(max-width:780px) {
+    #menu-btn {
+        display: initial;
+    }
+
+    .header .navbar {
+        position: absolute;
+        top: 115%;
+        right: 2rem;
+        border-radius: .5rem;
+        box-shadow: var(--box-shadow);
+        width: 30rem;
+        border: var(--border);
+        background: #fff;
+        transform: scale(0);
+        opacity: 0;
+        transform-origin: top right;
+        transition: none;
+    }
+
+    .header .navbar a {
+        font-size: 2rem;
+        display: block;
+        margin: 2.5rem;
+    }
+}
+
+@media (max-width: 991px) {
+    html {
+        font-size: 50%;
+    }
+
+    .header {
+        padding: 2rem;
+    }
+
+    section {
+        padding: 2rem;
+    }
+}

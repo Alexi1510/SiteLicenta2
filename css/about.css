@@ -1,0 +1,130 @@
+.about{
+    padding: 2.9rem 9%;
+    background: black;
+    padding-top: calc(5rem + 7rem);
+}
+
+.about .content{
+    max-width: 80rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about .heading{
+    font-size: 4.5rem;
+    color: #f5f5f5;
+    text-shadow: var(--text-shadow);
+    margin-bottom: 1rem;
+}
+
+.team .heading{
+    font-size: 4.5rem;
+    color: #f5f5f5;
+    text-shadow: var(--text-shadow);
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+.about p, .team{
+    font-size: 2.5rem;
+    color: #f5f5f5;
+    line-height: 1.5;
+    padding: 1rem 0;
+}
+
+section:nth-child(even){
+    background: var(--green);
+}
+
+section{
+    pad: 2rem 9%;
+    background: #f5f5f5;
+}
+
+.content{
+    max-width: 80rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.heading{
+    font-size: 4.5rem;
+    color: var(--black);
+    text-shadow: var(--text-shadow);
+    margin-bottom: 1rem;
+}
+
+.history p{
+    font-size: 2.5rem;
+    color: var(--black);
+    line-height: 1.5;
+    padding: 1rem 0;
+}
+
+.team{
+    padding: 2rem 9%;
+    background: #f5f5f5;
+}
+
+.box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.box{
+    border: var(--border);
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+    background: #fff;
+    text-align: center;
+    padding: 2rem;
+    transition: transform 0.2s ease-out;
+}
+
+.box:hover{
+    transform: scale(1.05);
+}
+
+.box h3{
+    font-size: 2rem;
+    color: var(--black);
+    line-height: 1.5;
+    margin: 0.5rem 0;
+}
+
+.box p{
+    font-size: 1.4rem;
+    color: var(--black);
+    line-height: 1.5;
+    margin: 0.5rem 0;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem; /* Spațiu între membri echipei */
+}
+
+/* .team-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 1rem;
+} */
+
+.team-info {
+    text-align: left;
+}
+
+.contact-location p{
+    font-size: 2.5rem;
+    color: var(--black);
+    line-height: 1.5;
+    padding: 1rem 0;
+}
+
